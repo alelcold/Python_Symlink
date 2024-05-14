@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown to HTML</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="markdown-content">
+        <!-- The Markdown content will be inserted here -->
+    </div>
+
+    <script>
+        // Fetch the Markdown file (replace with your actual file path)
+        fetch('src/markdownDemo.txt')
+            .then(response => response.text())
+            .then(markdown => {
+                // Convert Markdown to HTML
+                const converter = new showdown.Converter();
+                const html = converter.makeHtml(markdown);
+
+                // Display the HTML content
+                document.getElementById('markdown-content').innerHTML = html;
+            })
+            .catch(error => console.error('Error fetching Markdown:', error));
+    </script>
+
+    <!-- Include the Showdown library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+</body>
+</html>
